@@ -36,4 +36,16 @@ export class Nifty50Component implements OnInit {
      
   }
 
+
+  searchFun(event:Event){  
+    this.http.get<any>('https://jsonplaceholder.typicode.com/posts').subscribe(data => {
+      this.totalAngularPackages = data;      
+    const valToSearch = (event.target as HTMLTextAreaElement).value;   
+    this.totalAngularPackages = this.totalAngularPackages.filter(o => o.title.includes(valToSearch))
+                                                         .filter(o => o.body.includes(valToSearch));  
+    
+      
+  });
+  }
+
 }
